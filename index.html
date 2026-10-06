@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Healthcare Data Readiness | 6.0 Industries</title>
+<meta name="description" content="A fixed-scope review of your multi-site health data. Find out what is wrong before you build on it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F8F7; --surface:#FFFFFF; --ink:#12302F; --muted:#4F6665; --line:#CBDAD7;
+  --accent:#0B6E6A; --accent-ink:#FFFFFF; --flag:#B26A00; --flag-bg:#FFF1D6; --ok:#0B6E6A; --ok-bg:#DDF1EE; --bad:#A12B2B; --bad-bg:#FBE3E1;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1D1D; --surface:#152826; --ink:#E4F0EE; --muted:#9DB5B2; --line:#2B4543;
+  --accent:#4FC3BA; --accent-ink:#082524; --flag:#F2B24D; --flag-bg:#3A2D12; --ok:#6FD6CC; --ok-bg:#12332F; --bad:#FF9C94; --bad-bg:#3E1D1B;}}
+:root[data-theme="dark"]{
+  --bg:#0E1D1D; --surface:#152826; --ink:#E4F0EE; --muted:#9DB5B2; --line:#2B4543;
+  --accent:#4FC3BA; --accent-ink:#082524; --flag:#F2B24D; --flag-bg:#3A2D12; --ok:#6FD6CC; --ok-bg:#12332F; --bad:#FF9C94; --bad-bg:#3E1D1B;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--body)}
+.wrap{max-width:68rem;margin:0 auto;padding:0 1.25rem}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);line-height:1.12;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(2.2rem,5.5vw,3.9rem);font-weight:700;max-width:16ch}
+h2{font-size:clamp(1.6rem,3.2vw,2.3rem);font-weight:700;margin-bottom:1rem}
+h3{font-size:1.2rem;font-weight:500;margin-bottom:.35rem}
+p{margin:0 0 1rem;max-width:62ch}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0;gap:1rem}
+.brand{font:700 1.15rem var(--display);color:var(--ink);text-decoration:none}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);font:600 1rem var(--body);padding:.8rem 1.4rem;border-radius:.4rem;text-decoration:none;border:2px solid var(--accent)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--accent)}
+.hero{padding:2.5rem 0 3.5rem}
+.hero p.lead{font-size:1.25rem;color:var(--muted);margin:1.2rem 0 1.8rem;max-width:46ch}
+.cta-row{display:flex;gap:.8rem;flex-wrap:wrap}
+.proof{display:grid;gap:1.25rem;margin-top:3rem;grid-template-columns:1fr}
+@media(min-width:56rem){.proof{grid-template-columns:1.25fr 1fr}}
+.tbl-box{background:var(--surface);border:1px solid var(--line);border-radius:.5rem;padding:1rem;overflow-x:auto}
+.tbl-box h3{font-size:1rem;font-family:var(--body);font-weight:600;margin-bottom:.6rem}
+table{border-collapse:collapse;width:100%;font:400 .9rem var(--mono);min-width:26rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-weight:500;color:var(--muted)}
+td.f{background:var(--flag-bg);color:var(--flag);font-weight:500}
+td.g{background:var(--ok-bg);color:var(--ok);font-weight:500}
+.cap{font-size:.9rem;color:var(--muted);margin:.7rem 0 0}
+section{padding:3.2rem 0;border-top:1px solid var(--line)}
+.cols{display:grid;gap:1.8rem;grid-template-columns:1fr}
+@media(min-width:48rem){.cols.three{grid-template-columns:repeat(3,1fr)}.cols.two{grid-template-columns:1fr 1fr}}
+.cols div{border-left:3px solid var(--accent);padding-left:1rem}
+.cols p{color:var(--muted);margin:0}
+dl{margin:0;display:grid;gap:1.1rem}
+dt{font:500 1.1rem var(--display)}
+dd{margin:.15rem 0 0;color:var(--muted);max-width:62ch}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:1.2rem;counter-reset:s}
+ol.steps li{counter-increment:s;padding-left:3.2rem;position:relative}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:2.2rem;height:2.2rem;border-radius:50%;background:var(--accent);color:var(--accent-ink);font:600 1rem var(--display);display:grid;place-items:center}
+ol.steps b{display:block;font:500 1.1rem var(--display)}
+ol.steps span{color:var(--muted)}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:.5rem;padding:1.2rem 1.4rem}
+.note p:last-child{margin:0}
+details{border-bottom:1px solid var(--line);padding:.9rem 0}
+summary{cursor:pointer;font:500 1.1rem var(--display)}
+details p{margin:.6rem 0 0;color:var(--muted)}
+.final{text-align:left}
+footer{border-top:1px solid var(--line);padding:2rem 0 2.5rem;color:var(--muted);font-size:.92rem}
+footer p{max-width:70ch;margin:0 0 .6rem}
+
+#checker .priv{background:var(--ok-bg);border-left:4px solid var(--ok);padding:.8rem 1rem;margin:1rem 0 1.2rem;max-width:62ch}
+#checker .drop{display:block;border:2px dashed var(--accent);border-radius:.6rem;background:var(--surface);padding:2rem 1.2rem;text-align:center;cursor:pointer;position:relative}
+#checker .drop.over{background:var(--ok-bg)}
+#checker .drop input{position:absolute;opacity:0;width:1px;height:1px}
+#checker .drop:focus-within{outline:3px solid var(--accent);outline-offset:3px}
+#checker .drop b{font:500 1.15rem var(--display)}
+#checker .row{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.9rem}
+#checker button{font:600 .95rem var(--body);padding:.65rem 1.1rem;border-radius:.4rem;border:2px solid var(--accent);background:var(--accent);color:var(--accent-ink);cursor:pointer}
+#checker button.ghost{background:transparent;color:var(--accent)}
+#checker #out{display:none}
+#checker .sum{font-size:1.1rem}
+#checker .finds{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+#checker .finds li{padding:.7rem .9rem;border-radius:.4rem;border-left:4px solid}
+#checker .finds li.hi{background:var(--bad-bg);border-color:var(--bad)}
+#checker .finds li.ck{background:var(--flag-bg);border-color:var(--flag)}
+#checker code{font-family:var(--mono);font-size:.9em;font-weight:500}
+#checker .tw{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:.5rem}
+#checker table{min-width:38rem;font-size:.86rem}
+#checker .none{padding:.8rem 1rem;background:var(--ok-bg);border-left:4px solid var(--ok)}
+#checker .fine{font-size:.9rem;color:var(--muted);margin-top:2rem}
+#checker h2.sub{font-size:1.3rem;margin:1.8rem 0 .6rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top">6.0 Industries</a>
+    <a class="btn ghost" href="#contact">Book a call</a>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <h1>Find out what is wrong with your health data before you build on it.</h1>
+      <p class="lead">A fixed-scope review of data from your hospitals or clinics. You get a plain report of what is inconsistent, missing or impossible, and a set of rules your clinicians can check.</p>
+      <div class="cta-row">
+        <a class="btn" href="#contact">Book a free intro call</a>
+        <a class="btn ghost" href="#checker">Check a file free</a>
+      </div>
+
+      <div class="proof">
+        <div class="tbl-box">
+          <h3>As received from three hospitals</h3>
+          <table>
+            <thead><tr><th>Site</th><th>Admitted</th><th>Glucose</th><th>Weight</th><th>Sex</th></tr></thead>
+            <tbody>
+              <tr><td>A</td><td>2025-06-12</td><td class="f">117.4 mg/dL</td><td>72 kg</td><td>M</td></tr>
+              <tr><td>B</td><td class="f">12/06/2025</td><td>6.5 mmol/L</td><td>72 kg</td><td class="f">"male "</td></tr>
+              <tr><td>C</td><td class="f">06-12-25</td><td>6.6 mmol/L</td><td class="f">160 lb</td><td class="f">1</td></tr>
+            </tbody>
+          </table>
+          <p class="cap">Amber cells would silently mislead a model or a report.</p>
+        </div>
+        <div class="tbl-box">
+          <h3>After review and standard rules</h3>
+          <table style="min-width:18rem">
+            <thead><tr><th>Admitted</th><th>Glucose</th><th>Weight</th><th>Sex</th></tr></thead>
+            <tbody>
+              <tr><td class="g">2025-06-12</td><td class="g">6.5 mmol/L</td><td class="g">72 kg</td><td class="g">male</td></tr>
+              <tr><td class="g">2025-06-12</td><td class="g">6.5 mmol/L</td><td class="g">72 kg</td><td class="g">male</td></tr>
+              <tr><td class="g">2025-06-12</td><td class="g">6.6 mmol/L</td><td class="g">72.6 kg</td><td class="g">male</td></tr>
+            </tbody>
+          </table>
+          <p class="cap">One unit, one date format, one code. Every change is counted and logged.</p>
+        </div>
+      </div>
+    </div>
+
+    <section id="problem">
+      <h2>Why multi-site health data goes wrong</h2>
+      <div class="cols three">
+        <div><h3>Mixed units</h3><p>One site reports glucose in mg/dL and another in mmol/L. Combined, one site looks about 18 times sicker.</p></div>
+        <div><h3>Different formats and codes</h3><p>Day-first and month-first dates, "M", "Male" and "1" for the same thing, and trailing spaces nobody sees.</p></div>
+        <div><h3>Gaps and impossible values</h3><p>Duplicate records, blanks, and entries like a blood pressure of 900 or an age of minus 4.</p></div>
+      </div>
+    </section>
+
+    <section id="checker">
+      <h2>Check your own file, free</h2>
+      <p>Drop in a spreadsheet saved as CSV and get a quick list of problems that could mislead an analysis or a model: missing values, duplicates, mixed units, mixed date formats, impossible values and possible patient identifiers.</p>
+      <div class="priv"><b>Your file stays on your device.</b> It is read by this page in your browser and is not uploaded or sent anywhere. Even so, try the sample first, and only use real patient data once your organisation has approved this tool.</div>
+      <label class="drop" id="drop"><input type="file" id="file" accept=".csv,.txt,.tsv"><b>Choose a CSV file</b><br><span class="muted" style="color:var(--muted)">or drag it onto this box</span></label>
+      <div class="row"><button class="ghost" id="sample" type="button">Try with sample data</button></div>
+      <p id="err" role="alert" style="color:var(--bad);margin-top:.8rem"></p>
+      <div id="out" aria-live="polite">
+        <h2 class="sub">Summary</h2><p class="sum" id="sum"></p>
+        <h2 class="sub">Findings</h2><div id="finds"></div>
+        <h2 class="sub">Columns</h2><div class="tw"><table><thead><tr><th>Column</th><th>Type</th><th>Missing</th><th>Distinct</th><th>Min</th><th>Median</th><th>Max</th></tr></thead><tbody id="cols"></tbody></table></div>
+        <div class="row"><button type="button" id="copy">Copy findings as text</button><button class="ghost" type="button" id="again">Check another file</button></div>
+        <p id="copied" class="muted" style="color:var(--muted)"></p>
+      </div>
+      <p class="fine">This is a screening aid. It points out likely problems but does not fix data, confirm that values are correct, or certify compliance with any law. A clinician or data specialist should review the findings. Fixing, standardising and documenting the data is what the assessment above delivers.</p>
+    </section>
+
+    <section id="get">
+      <h2>What you get</h2>
+      <dl>
+        <div><dt>Data quality report</dt><dd>What is wrong, how much, and at which site, in plain language.</dd></div>
+        <div><dt>Recommended rules file</dt><dd>Unit conversions, code mappings and plausible ranges in a readable file, ready for your clinicians to review.</dd></div>
+        <div><dt>Sample run of the cleaning pipeline</dt><dd>Shows the rules working on a sample, with every change counted and logged.</dd></div>
+        <div><dt>Risk register</dt><dd>Open questions that need a clinician or hospital to confirm, and privacy risks to settle before data is shared.</dd></div>
+        <div><dt>Findings session</dt><dd>A conversation to walk through the results and agree next steps.</dd></div>
+      </dl>
+    </section>
+
+    <section id="how">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><b>Week 1: Agree and profile</b><span>We sign a scope of work and a data processing agreement. We fingerprint your original files so we can prove they were not changed, then profile each site.</span></li>
+        <li><b>Week 2: Draft and test the rules</b><span>We write the standard rules and test them on a sample, checking that nothing is silently deleted.</span></li>
+        <li><b>Week 3: Report and review</b><span>You receive the report, rules file and risk register, and we go through them together.</span></li>
+      </ol>
+      <p style="margin-top:1.2rem;color:var(--muted)">Typical timeline for up to three sites. Larger projects are quoted separately.</p>
+    </section>
+
+    <section id="safe">
+      <h2>How we protect your data</h2>
+      <div class="cols two">
+        <div><h3>Originals stay untouched</h3><p>Work happens on copies. Checksums show the original files were never altered.</p></div>
+        <div><h3>Written agreement first</h3><p>No personal information moves until a data processing agreement is signed and you have confirmed your lawful basis for sharing it.</p></div>
+        <div><h3>Less data, not more</h3><p>We prefer de-identified or coded data, and we never try to re-identify patients.</p></div>
+        <div><h3>Only the people who need it</h3><p>Access is limited, kept in a record, and data is deleted or returned when the work ends.</p></div>
+      </div>
+    </section>
+
+    <section id="limits">
+      <h2>What this is, and what it is not</h2>
+      <div class="note">
+        <p>This is a data preparation service. We do not build or validate predictive models, give clinical advice, or certify that your data or organisation meets any law. Your clinicians and privacy officer keep the final sign-off.</p>
+        <p>We are taking on our first pilot clients, so the scope is deliberately small and the price is fixed.</p>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>Questions</h2>
+      <details><summary>Do you need patient names and ID numbers?</summary><p>No. We ask for coded or de-identified data wherever possible. If direct identifiers are needed, that is agreed in writing first.</p></details>
+      <details><summary>Can you build the prediction model too?</summary><p>Not in this assessment. It prepares and checks the data. Modelling can be discussed separately once the data is ready.</p></details>
+      <details><summary>What does it cost?</summary><p>A fixed fee, agreed after a short call so we know how many sites and how much data are involved.</p></details>
+      <details><summary>Who reviews the rules?</summary><p>Your own clinicians. We draft the rules in a plain file so they can read, question and approve each one.</p></details>
+    </section>
+
+    <section id="contact" class="final">
+      <h2>Tell us about your data</h2>
+      <p>Send a short note with how many sites you have and what kind of data they hold. Please do not email patient information.</p>
+      <p><a class="btn" href="mailto:nthodithato@gmail.com?subject=Data%20readiness%20assessment">Email 6.0 Industries</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p><b>6.0 Industries</b>, Tshwane, South Africa.</p>
+    <p>This service prepares and checks data. It is not medical advice, a medical device, or a legal or compliance opinion.</p>
+  </footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MISS=new Set(['','na','n/a','null','none','nan','-','?','unknown']);
+const isMiss=v=>MISS.has(String(v).trim().toLowerCase());
+const num=v=>{v=String(v).trim().replace(/^(-?\d+),(\d+)$/,'$1.$2');return /^-?\d+(\.\d+)?$/.test(v)?Number(v):NaN};
+function parse(t){t=t.replace(/^\uFEFF/,'');const first=t.split(/\r?\n/,1)[0];
+ const d=[',',';','\t'].map(c=>[c,first.split(c).length]).sort((a,b)=>b[1]-a[1])[0][0];
+ const rows=[];let r=[],f='',q=false;
+ for(let i=0;i<t.length;i++){const c=t[i];
+  if(q){if(c=='"'){if(t[i+1]=='"'){f+='"';i++}else q=false}else f+=c}
+  else if(c=='"')q=true;else if(c==d){r.push(f);f=''}
+  else if(c=='\n'||c=='\r'){if(c=='\r'&&t[i+1]=='\n')i++;r.push(f);f='';if(r.some(x=>x.trim()!==''))rows.push(r);r=[]}
+  else f+=c}
+ if(f!==''||r.length){r.push(f);if(r.some(x=>x.trim()!==''))rows.push(r)}
+ return rows}
+const RANGES=[[/age/i,0,120],[/systolic|sbp/i,50,260],[/diastolic|dbp/i,25,160],[/heart.?rate|pulse/i,20,250],[/temp/i,30,45],[/weight|\bwt\b/i,2,300]];
+const IDCOLS=/(^|[^a-z])(name|surname|first.?name|last.?name|id.?(no|num)|national.?id|passport|phone|cell|mobile|email|address)([^a-z]|$)/i;
+let report='';
+function analyse(rows,note){
+ const head=rows[0].map((h,i)=>h.trim()||('column '+(i+1)));let data=rows.slice(1);
+ if(data.length>300000){data=data.slice(0,300000);note=' (first 300,000 rows checked)'}
+ const n=data.length,F=[],S=[];
+ const hi=(c,m)=>F.push({l:'hi',c,m}),ck=(c,m)=>F.push({l:'ck',c,m});
+ const seen=new Set();let dup=0;for(const r of data){const k=r.join('\u0001');if(seen.has(k))dup++;else seen.add(k)}
+ if(dup)hi('All columns',dup+' exact duplicate rows ('+(100*dup/n).toFixed(1)+'%). Check whether they are repeats or real separate records before removing.');
+ head.forEach((h,j)=>{
+  const raw=data.map(r=>r[j]===undefined?'':r[j]),vals=raw.filter(v=>!isMiss(v)),miss=n-vals.length,pm=n?100*miss/n:0;
+  let type='text',mn='',md='',mx='',dist=new Set(vals.map(v=>v.trim())).size;
+  if(IDCOLS.test(h))hi(h,'Column name suggests a direct identifier. Remove or replace it with a code before sharing the file.');
+  if(vals.some(v=>/^\d{13}$/.test(v.trim())))hi(h,'Contains 13-digit numbers that look like ID numbers. Remove them before sharing.');
+  if(vals.some(v=>/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(v.trim())))hi(h,'Contains email addresses. Remove them before sharing.');
+  if(pm>=20)hi(h,pm.toFixed(0)+'% of values are missing. Ask why; the gap may be informative.');
+  else if(pm>=5)ck(h,pm.toFixed(0)+'% of values are missing.');
+  const nums=vals.map(num).filter(x=>!isNaN(x));
+  const dre=/^(\d{1,2})([-/.])(\d{1,2})\2(\d{2}|\d{4})$/,ire=/^\d{4}([-/])\d{1,2}\1\d{1,2}/;
+  const dv=vals.filter(v=>dre.test(v.trim())||ire.test(v.trim()));
+  if(vals.length&&nums.length/vals.length>=.9&&!/unit/i.test(h)){
+   type='number';const s=nums.slice().sort((a,b)=>a-b);mn=s[0];mx=s[s.length-1];md=s[Math.floor(s.length/2)];
+   if(vals.length-nums.length>0)ck(h,(vals.length-nums.length)+' values are not numbers in a mostly numeric column.');
+   for(const [re,lo,hiR] of RANGES)if(re.test(h)&&!/_was_|flag/i.test(h)){const bad=nums.filter(x=>x<lo||x>hiR).length;
+    if(bad)hi(h,bad+' values outside the plausible range '+lo+' to '+hiR+' (lowest '+mn+', highest '+mx+').');break}
+   if(/gluc/i.test(h)){const lo=nums.filter(x=>x<40).length/nums.length,up=nums.filter(x=>x>=40).length/nums.length;
+    if(lo>.05&&up>.05)hi(h,'Values look like a mix of mmol/L and mg/dL ('+(100*lo).toFixed(0)+'% under 40, '+(100*up).toFixed(0)+'% over). Check the unit for each source.');
+    else ck(h,'Values look like '+(up>.5?'mg/dL':'mmol/L')+'. Confirm the unit.')}
+  }else if(vals.length&&dv.length/vals.length>=.8){
+   type='date';const sig=new Set();let a=0,b=0;
+   for(const v of dv){const m=v.trim().match(dre);if(m){sig.add(m[2]+(m[4].length+'y'));if(+m[1]>12)a++;if(+m[3]>12)b++}else sig.add('iso')}
+   if(sig.size>1)hi(h,'Mixed date formats in one column ('+[...sig].join(', ')+').');
+   if(a&&b)hi(h,'Some dates look day-first and others month-first.');
+   else if(!a&&!b&&dv.some(v=>dre.test(v.trim())))hi(h,'Dates like 06-12-25 could be day-first or month-first. Confirm the format with the source.');
+   else if(a)ck(h,'Dates appear to be day-first.');else if(b)ck(h,'Dates appear to be month-first.');
+   if(dv.some(v=>{const m=v.trim().match(dre);return m&&m[4].length==2}))ck(h,'Two-digit years found. Confirm the century.');
+  }else if(vals.length&&dist<=30){
+   const g={};vals.forEach(v=>{const k=v.trim().toLowerCase();(g[k]=g[k]||new Set()).add(v)});
+   const bad=Object.entries(g).filter(([k,s])=>s.size>1);
+   if(bad.length)hi(h,'The same category is written several ways: '+bad.slice(0,3).map(([k,s])=>[...s].map(x=>'"'+x+'"').join(' / ')).join('; ')+'.');
+   if(/sex|gender/i.test(h)&&vals.every(v=>/^\d$/.test(v.trim())))ck(h,'Coded as numbers. Get written confirmation of what each number means.');
+   if(/unit/i.test(h)&&Object.keys(g).length>1)hi(h,'More than one unit in use: '+Object.keys(g).join(', ')+'. Convert to one unit before combining.');
+  }
+  S.push({h,type,pm,dist,mn,md,mx})});
+ const si=head.findIndex(h=>/systolic|sbp/i.test(h)),di=head.findIndex(h=>/diastolic|dbp/i.test(h));
+ if(si>=0&&di>=0){let c=0;for(const r of data){const s=num(r[si]),d=num(r[di]);if(!isNaN(s)&&!isNaN(d)&&s<=d)c++}
+  if(c)hi(head[si]+' and '+head[di],c+' rows where systolic is not higher than diastolic. At least one of the two is wrong.')}
+ const H=F.filter(x=>x.l=='hi'),C=F.filter(x=>x.l=='ck');
+ $('sum').textContent=n.toLocaleString()+' rows and '+head.length+' columns read'+(note||'')+'. '+H.length+' issues need attention and '+C.length+' are worth checking.';
+ const L=(t,a)=>a.length?'<h3 style="margin:1rem 0 .5rem">'+t+'</h3><ul class="finds">'+a.map(x=>'<li class="'+x.l+'"><code>'+esc(x.c)+'</code>: '+esc(x.m)+'</li>').join('')+'</ul>':'';
+ $('finds').innerHTML=F.length?L('Needs attention',H)+L('Worth checking',C):'<div class="none">No problems found by these checks. That does not prove the data is correct.</div>';
+ $('cols').innerHTML=S.map(s=>'<tr><td>'+esc(s.h)+'</td><td>'+s.type+'</td><td>'+s.pm.toFixed(1)+'%</td><td>'+s.dist+'</td><td>'+esc(s.mn)+'</td><td>'+esc(s.md)+'</td><td>'+esc(s.mx)+'</td></tr>').join('');
+ report='Data Readiness Checker\n'+$('sum').textContent+'\n\n'+F.map(x=>(x.l=='hi'?'[Needs attention] ':'[Worth checking] ')+x.c+': '+x.m).join('\n');
+ $('out').style.display='block';$('out').scrollIntoView({behavior:'smooth'})}
+function run(text){$('err').textContent='';try{const rows=parse(text);if(rows.length<2)throw 0;analyse(rows)}catch(e){$('err').textContent='This file could not be read as a table. Save it as CSV with column names in the first row and try again.'}}
+function load(f){if(!f)return;if(f.size>25e6){$('err').textContent='File is over 25 MB. Try a smaller sample.';return}
+ const r=new FileReader();r.onload=()=>run(r.result);r.onerror=()=>$('err').textContent='The file could not be opened.';r.readAsText(f)}
+$('file').onchange=e=>load(e.target.files[0]);
+const dz=$('drop');['dragenter','dragover'].forEach(t=>dz.addEventListener(t,e=>{e.preventDefault();dz.classList.add('over')}));
+['dragleave','drop'].forEach(t=>dz.addEventListener(t,e=>{e.preventDefault();dz.classList.remove('over')}));
+dz.addEventListener('drop',e=>load(e.dataTransfer.files[0]));
+$('sample').onclick=()=>{let s='site,patient_name,sex,age,admit_date,glucose,glucose_unit,systolic_bp,diastolic_bp\n';
+ for(let i=0;i<120;i++){const k=i%3,g=5+((i*7)%40)/10;
+  s+=['A','B','C'][k]+',Patient '+i+','+[['M','F'],['Male','female '],['1','2']][k][i%2]+','+(i%25==0?-4:20+(i*3)%70)+','+
+  [`2025-0${1+i%9}-1${i%9}`,`1${i%9}/0${1+i%9}/2025`,`0${1+i%9}-1${i%9}-25`][k]+','+(k==0?(g*18).toFixed(1):g.toFixed(1))+','+(k==0?'mg/dL':'mmol/L')+','+
+  (i%17==0?900:110+(i*5)%40)+','+(i%11==0?130:70+(i*3)%20)+'\n'}
+ run(s)};
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText(report);$('copied').textContent='Copied.'}catch(e){$('copied').textContent='Copying is blocked here. Select the findings above and copy them by hand.'}};
+$('again').onclick=()=>{$('out').style.display='none';$('file').value='';$('checker').scrollIntoView({behavior:'smooth'})};
+</script>
+</body>
+</html>
