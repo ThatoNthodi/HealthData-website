@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Healthcare Data Readiness | 6.0 Industries</title>
+<title>Healthcare Data Readiness | 6.0 Industries Limited</title>
 <meta name="description" content="A fixed-scope review of your multi-site health data. Find out what is wrong before you build on it.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="6.0 Industries">
+<meta property="og:site_name" content="6.0 Industries Limited">
 <meta property="og:title" content="Healthcare Data Readiness Assessment">
 <meta property="og:description" content="Find out what is wrong with your multi-site health data before you build on it. Includes a free CSV checker that runs in your browser.">
 <meta property="og:url" content="https://thatonthodi.github.io/HealthData-website/">
 <meta property="og:image" content="https://thatonthodi.github.io/HealthData-website/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Find out what is wrong with your health data before you build on it. 6.0 Industries.">
+<meta property="og:image:alt" content="Find out what is wrong with your health data before you build on it. 6.0 Industries Limited.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F4F8F7; --surface:#FFFFFF; --ink:#12302F; --muted:#4F6665; --line:#CBDAD7;
+  --bg:#F4F8F7; --bg-top:#DCEBF4; --glow:rgba(255,255,255,.85); --art-o:.7; --surface:#FFFFFF; --ink:#12302F; --muted:#4F6665; --line:#CBDAD7;
   --accent:#0B6E6A; --accent-ink:#FFFFFF; --flag:#B26A00; --flag-bg:#FFF1D6; --ok:#0B6E6A; --ok-bg:#DDF1EE; --bad:#A12B2B; --bad-bg:#FBE3E1;
   --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
   --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
@@ -28,14 +28,14 @@
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0E1D1D; --surface:#152826; --ink:#E4F0EE; --muted:#9DB5B2; --line:#2B4543;
+  --bg:#0E1D1D; --bg-top:#123238; --glow:rgba(79,195,186,.14); --art-o:.4; --surface:#152826; --ink:#E4F0EE; --muted:#9DB5B2; --line:#2B4543;
   --accent:#4FC3BA; --accent-ink:#082524; --flag:#F2B24D; --flag-bg:#3A2D12; --ok:#6FD6CC; --ok-bg:#12332F; --bad:#FF9C94; --bad-bg:#3E1D1B;}}
 :root[data-theme="dark"]{
-  --bg:#0E1D1D; --surface:#152826; --ink:#E4F0EE; --muted:#9DB5B2; --line:#2B4543;
+  --bg:#0E1D1D; --bg-top:#123238; --glow:rgba(79,195,186,.14); --art-o:.4; --surface:#152826; --ink:#E4F0EE; --muted:#9DB5B2; --line:#2B4543;
   --accent:#4FC3BA; --accent-ink:#082524; --flag:#F2B24D; --flag-bg:#3A2D12; --ok:#6FD6CC; --ok-bg:#12332F; --bad:#FF9C94; --bad-bg:#3E1D1B;}
 html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--body)}
+body{margin:0;color:var(--ink);font:400 1.0625rem/1.6 var(--body)}
 .wrap{max-width:68rem;margin:0 auto;padding:0 1.25rem}
 a{color:var(--accent)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
@@ -105,20 +105,24 @@ footer p{max-width:70ch;margin:0 0 .6rem}
 #checker .none{padding:.8rem 1rem;background:var(--ok-bg);border-left:4px solid var(--ok)}
 #checker .fine{font-size:.9rem;color:var(--muted);margin-top:2rem}
 #checker h2.sub{font-size:1.3rem;margin:1.8rem 0 .6rem}
+
+body{position:relative;background-color:var(--bg);background-image:radial-gradient(circle at 78% 6%,var(--glow),transparent 38rem),linear-gradient(180deg,var(--bg-top),var(--bg) 44rem);background-repeat:no-repeat}
+body::before{content:"";position:absolute;top:0;left:0;right:0;height:46rem;z-index:-1;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='290 0 610 520'%3E%3Cg fill='none' stroke='%234C93BD' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='448.0,260.0 414.0,318.9 346.0,318.9 312.0,260.0 346.0,201.1 414.0,201.1' fill='%237FC4E6' fill-opacity='.16' stroke-width='2.5'/%3E%3Cg transform='translate(380,260)'%3E%3Crect x='-24' y='-20' width='48' height='34' rx='4'/%3E%3Cpath d='M-16 -2h8l5-10 7 20 5-10h10M-10 22h20'/%3E%3C/g%3E%3Cpolygon points='553.0,200.0 519.0,258.9 451.0,258.9 417.0,200.0 451.0,141.1 519.0,141.1' fill='%237FC4E6' fill-opacity='.16' stroke-width='2.5'/%3E%3Cg transform='translate(485,200)'%3E%3Crect x='-20' y='-26' width='40' height='52' rx='5'/%3E%3Cpath d='M-9 -26v-4h18v4M-10 -8h20M-10 4h20M-10 16h12'/%3E%3C/g%3E%3Cpolygon points='553.0,320.0 519.0,378.9 451.0,378.9 417.0,320.0 451.0,261.1 519.0,261.1' fill='%237FC4E6' fill-opacity='.16' stroke-width='2.5'/%3E%3Cg transform='translate(485,320)'%3E%3Crect x='-14' y='-24' width='28' height='46' rx='8'/%3E%3Cpath d='M-14 -8h28M0 22v10M-6 -16h12'/%3E%3C/g%3E%3Cpolygon points='658.0,140.0 624.0,198.9 556.0,198.9 522.0,140.0 556.0,81.1 624.0,81.1' fill='%237FC4E6' fill-opacity='.16' stroke-width='2.5'/%3E%3Cg transform='translate(590,140)'%3E%3Cg transform='rotate(45)'%3E%3Crect x='-8' y='-22' width='16' height='36' rx='3'/%3E%3Cpath d='M0 14v14M-14 -22h28M0 -22v-10M-8 -8h6M-8 2h6'/%3E%3C/g%3E%3C/g%3E%3Cpolygon points='658.0,260.0 624.0,318.9 556.0,318.9 522.0,260.0 556.0,201.1 624.0,201.1' fill='%237FC4E6' fill-opacity='.16' stroke-width='2.5'/%3E%3Cg transform='translate(590,260)'%3E%3Cpath d='M0 24C-36 -2 -24 -30 -9 -23 -3 -20 0 -14 0 -14s3 -6 9 -9C24 -30 36 -2 0 24z'/%3E%3Cpath d='M-18 2h10l5-10 6 18 4-8h9'/%3E%3C/g%3E%3Cpolygon points='658.0,380.0 624.0,438.9 556.0,438.9 522.0,380.0 556.0,321.1 624.0,321.1' fill='%237FC4E6' fill-opacity='.16' stroke-width='2.5'/%3E%3Cg transform='translate(590,380)'%3E%3Cpath d='M-7 -26h14M-5 -26v16l-17 32h44l-17-32v-16M-12 12h24'/%3E%3C/g%3E%3Cpolygon points='763.0,200.0 729.0,258.9 661.0,258.9 627.0,200.0 661.0,141.1 729.0,141.1' fill='%237FC4E6' fill-opacity='.16' stroke-width='2.5'/%3E%3Cg transform='translate(695,200)'%3E%3Cg transform='rotate(-45)'%3E%3Crect x='-30' y='-13' width='60' height='26' rx='13'/%3E%3Cpath d='M0 -13v26'/%3E%3C/g%3E%3C/g%3E%3Cpolygon points='763.0,320.0 729.0,378.9 661.0,378.9 627.0,320.0 661.0,261.1 729.0,261.1' fill='%237FC4E6' fill-opacity='.16' stroke-width='2.5'/%3E%3Cg transform='translate(695,320)'%3E%3Crect x='-28' y='-14' width='56' height='40' rx='6'/%3E%3Cpath d='M-10 -14v-8h20v8M0 -2v18M-9 7h18'/%3E%3C/g%3E%3Cpolygon points='868.0,260.0 834.0,318.9 766.0,318.9 732.0,260.0 766.0,201.1 834.0,201.1' fill='%237FC4E6' fill-opacity='.16' stroke-width='2.5'/%3E%3Cg transform='translate(800,260)'%3E%3Cpath d='M-8 -22h16v14h14v16h-14v14h-16v-14h-14v-16h14z'/%3E%3C/g%3E%3Cpath d='M390 485h110l12-30 18 66 14-52 10 16h150' stroke-width='3'/%3E%3Cpath d='M700 70L750 42L815 66' stroke-width='2'/%3E%3Ccircle cx='700' cy='70' r='7' fill='%237FC4E6' fill-opacity='.4' stroke-width='2'/%3E%3Ccircle cx='750' cy='42' r='6' fill='%237FC4E6' fill-opacity='.4' stroke-width='2'/%3E%3Ccircle cx='815' cy='66' r='6' fill='%237FC4E6' fill-opacity='.4' stroke-width='2'/%3E%3Crect x='860' y='400' width='14' height='14' rx='2' stroke-width='1.5' stroke-opacity='.6'/%3E%3Crect x='330' y='430' width='14' height='14' rx='2' stroke-width='1.5' stroke-opacity='.6'/%3E%3Crect x='340' y='60' width='14' height='14' rx='2' stroke-width='1.5' stroke-opacity='.6'/%3E%3C/g%3E%3C/svg%3E") no-repeat right -2rem top 2rem / min(46rem,100%) auto;opacity:var(--art-o);-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);mask-image:linear-gradient(180deg,#000 55%,transparent)}
+@media(max-width:48rem){body::before{opacity:calc(var(--art-o)*.5);background-position:center top}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="#top">6.0 Industries</a>
+    <a class="brand" href="#top">6.0 Industries Limited</a>
     <a class="btn ghost" href="#contact">Book a call</a>
   </header>
 
   <main id="top">
     <div class="hero">
       <h1>Find out what is wrong with your health data before you build on it.</h1>
-      <p class="lead">A fixed-scope review of data from your hospitals or clinics. You get a plain report of what is inconsistent, missing or impossible, and a set of rules your clinicians can check.</p>
+      <p class="lead">A fixed-scope review of data from your hospitals or clinics. You get a plain report of what is inconsistent, missing or impossible, a set of rules your clinicians can check, and a readiness score.</p>
       <div class="cta-row">
         <a class="btn" href="#contact">Book a free intro call</a>
         <a class="btn ghost" href="#checker">Check a file free</a>
@@ -181,12 +185,26 @@ footer p{max-width:70ch;margin:0 0 .6rem}
     <section id="get">
       <h2>What you get</h2>
       <dl>
+        <div><dt>Healthcare AI Readiness Score</dt><dd>A score out of 100 with a plain status and the evidence behind each part: data quality, model readiness (leakage checks) and privacy.</dd></div>
         <div><dt>Data quality report</dt><dd>What is wrong, how much, and at which site, in plain language.</dd></div>
         <div><dt>Recommended rules file</dt><dd>Unit conversions, code mappings and plausible ranges in a readable file, ready for your clinicians to review.</dd></div>
         <div><dt>Sample run of the cleaning pipeline</dt><dd>Shows the rules working on a sample, with every change counted and logged.</dd></div>
         <div><dt>Risk register</dt><dd>Open questions that need a clinician or hospital to confirm, and privacy risks to settle before data is shared.</dd></div>
         <div><dt>Findings session</dt><dd>A conversation to walk through the results and agree next steps.</dd></div>
       </dl>
+    </section>
+
+    <section id="score">
+      <h2>One readiness score, with the evidence behind it</h2>
+      <p>Every assessment ends with a Healthcare AI Readiness Score: a number out of 100 and a plain status, built from explicit automated checks on data quality, model readiness and privacy. You see every check, not just the total.</p>
+      <div class="scorecard">
+        <div class="big"><span class="n">97</span><span class="of">/100</span><p>READY FOR MODEL DEVELOPMENT</p></div>
+        <div class="grp"><h3>Data quality</h3><ul><li>Completeness <b>93.0%</b></li><li>Validity <b>99.1%</b></li><li>Consistency <b>100%</b></li><li>Duplicate rate <b>2.9%</b></li><li>Unit consistency <b>100%</b></li></ul></div>
+        <div class="grp"><h3>Model readiness</h3><ul><li>Patient overlap <b>No</b></li><li>Train/test contamination <b>No</b></li><li>Imputation leakage <b>No</b></li><li>Target leakage <b>No</b></li></ul></div>
+        <div class="grp"><h3>Privacy</h3><ul><li>Identifiers removed <b>Yes</b></li><li>Pseudonymisation <b>Yes</b></li><li>Age generalisation <b>Yes</b></li><li>Re-identification <b>Passed</b></li></ul></div>
+      </div>
+      <p class="cap">This example comes from our demonstration dataset, which is synthetic. It is not a client result, and real data usually scores lower. Some checks only apply to the data they were written for: the model readiness checks need patient identifiers and the outcome you want to predict. Without them, we score data quality and privacy only.</p>
+      <p>A high score means your data passed these specific checks. It does not guarantee that the data is clinically valid, free of bias or safe to deploy in care. Those questions need clinical review and testing on real outcomes.</p>
     </section>
 
     <section id="how">
@@ -212,7 +230,7 @@ footer p{max-width:70ch;margin:0 0 .6rem}
     <section id="limits">
       <h2>What this is, and what it is not</h2>
       <div class="note">
-        <p>This is a data preparation service. We do not build or validate predictive models, give clinical advice, or certify that your data or organisation meets any law. Your clinicians and privacy officer keep the final sign-off.</p>
+        <p>This is a data preparation service. We do not build or validate predictive models, give clinical advice, or certify that your data or organisation meets any law. Your clinicians and privacy officer keep the final sign-off. The score reflects specific automated checks. It does not guarantee that data is clinically valid, unbiased or safe for deployment.</p>
         <p>We are taking on our first pilot clients, so the scope is deliberately small and the price is fixed.</p>
       </div>
     </section>
@@ -221,6 +239,7 @@ footer p{max-width:70ch;margin:0 0 .6rem}
       <h2>Questions</h2>
       <details><summary>Do you need patient names and ID numbers?</summary><p>No. We ask for coded or de-identified data wherever possible. If direct identifiers are needed, that is agreed in writing first.</p></details>
       <details><summary>Can you build the prediction model too?</summary><p>Not in this assessment. It prepares and checks the data. Modelling can be discussed separately once the data is ready.</p></details>
+      <details><summary>What does a high score mean?</summary><p>That the data passed our specific checks for quality, leakage and privacy. It does not mean the data is clinically valid, unbiased or safe to deploy. The weights and thresholds behind the score are written in a plain file your clinicians and governance team can review and challenge.</p></details>
       <details><summary>What does it cost?</summary><p>A fixed fee, agreed after a short call so we know how many sites and how much data are involved.</p></details>
       <details><summary>Who reviews the rules?</summary><p>Your own clinicians. We draft the rules in a plain file so they can read, question and approve each one.</p></details>
     </section>
@@ -228,13 +247,13 @@ footer p{max-width:70ch;margin:0 0 .6rem}
     <section id="contact" class="final">
       <h2>Tell us about your data</h2>
       <p>Send a short note with how many sites you have and what kind of data they hold. Please do not email patient information.</p>
-      <p><a class="btn" href="https://mail.google.com/mail/?view=cm&amp;to=nthodithato@gmail.com&amp;su=Data%20readiness%20assessment" target="_blank" rel="noopener">Email 6.0 Industries</a></p>
+      <p><a class="btn" href="https://mail.google.com/mail/?view=cm&amp;to=nthodithato@gmail.com&amp;su=Data%20readiness%20assessment" target="_blank" rel="noopener">Email 6.0 Industries Limited</a></p>
       <p style="color:var(--muted)">Or write to <a href="mailto:nthodithato@gmail.com">nthodithato@gmail.com</a>.</p>
     </section>
   </main>
 
   <footer>
-    <p><b>6.0 Industries</b>, Tshwane, South Africa.</p>
+    <p><b>6.0 Industries Limited</b>, Tshwane, South Africa.</p>
     <p>This service prepares and checks data. It is not medical advice, a medical device, or a legal or compliance opinion.</p>
     <p><b>Privacy:</b> The file checker runs in your browser and does not upload your file. This page uses no analytics or advertising trackers. Fonts load from Google Fonts and the site is hosted on GitHub Pages, so those providers may see your IP address when you visit. If you email us, we use your details only to reply. Our handling of personal information is governed by the Protection of Personal Information Act (POPIA). Privacy questions: Thato Nthodi, <a href="mailto:nthodithato@gmail.com">nthodithato@gmail.com</a>.</p>
   </footer>
